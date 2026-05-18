@@ -1,0 +1,12 @@
+{
+  "name": "skills",
+  "private": true,
+  "description": "A collection of agent skills for Claude.",
+  "scripts": {
+    "format": "prettier --write \"**/*.md\"",
+    "format:check": "prettier --check \"**/*.md\""
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}
