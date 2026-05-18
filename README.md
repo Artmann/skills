@@ -1,9 +1,18 @@
 # Skills
 
+[![lint](https://github.com/artmann/skills/actions/workflows/lint.yml/badge.svg)](https://github.com/artmann/skills/actions/workflows/lint.yml)
+[![skills.sh](https://skills.sh/b/artmann/skills)](https://skills.sh/artmann/skills)
+
 This repository is a collection of agent skills — small, focused capabilities
 you can plug into Claude to make it a faster, more efficient builder. Each skill
 lives in its own directory under `skills/` and ships with a `SKILL.md` that
 tells the agent when to use it and how.
+
+Install with [skills.sh](https://skills.sh):
+
+```sh
+npx skills add artmann/skills
+```
 
 Drop a skill into your agent's loadout and it picks up new triggers
 automatically: search for stock photos, source images for a blog, etc. without
