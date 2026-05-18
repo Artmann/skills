@@ -1,5 +1,6 @@
 # Skills
 
+[![lint](https://github.com/artmann/skills/actions/workflows/lint.yml/badge.svg)](https://github.com/artmann/skills/actions/workflows/lint.yml)
 [![skills.sh](https://skills.sh/b/artmann/skills)](https://skills.sh/artmann/skills)
 
 This repository is a collection of agent skills — small, focused capabilities
