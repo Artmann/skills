@@ -21,49 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate SKILL.md frontmatter
-        run: |
-          set -euo pipefail
-          shopt -s nullglob
-          fail=0
-
-          skills=(*/SKILL.md)
-          if [ ${#skills[@]} -eq 0 ]; then
-            echo "::error::no SKILL.md files found at repo root"
-            exit 1
-          fi
-
-          for skill in "${skills[@]}"; do
-            dir=$(dirname "$skill")
-
-            fm=$(sed -n '/^---$/,/^---$/p' "$skill" | sed '1d;$d')
-            if [ -z "$fm" ]; then
-              echo "::error file=$skill::missing or malformed YAML frontmatter"
-              fail=1
-              continue
-            fi
-
-            name=$(echo "$fm" | yq -r '.name // ""')
-            description=$(echo "$fm" | yq -r '.description // ""')
-
-            if [ -z "$name" ]; then
-              echo "::error file=$skill::missing required field 'name'"
-              fail=1
-            elif [ "$name" != "$dir" ]; then
-              echo "::error file=$skill::name '$name' must match directory '$dir'"
-              fail=1
-            fi
-
-            if [ -z "$description" ]; then
-              echo "::error file=$skill::missing required field 'description'"
-              fail=1
-            elif [ ${#description} -lt 40 ]; then
-              echo "::error file=$skill::description too short (${#description} chars) — make it descriptive enough to trigger correctly"
-              fail=1
-            fi
-          done
-
-          if [ $fail -eq 0 ]; then
-            echo "✓ ${#skills[@]} skill(s) validated"
-          fi
-          exit $fail
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:skills
