@@ -2,21 +2,22 @@
 name: content-syndication
 description:
   Take a piece of content already published on the user's own site and produce
-  platform-native variations for syndication to Medium, X/Twitter, LinkedIn,
-  Reddit, Hacker News, Dev.to, Hashnode, Bluesky, Threads, Substack, Facebook,
-  and Instagram. Every variation includes a backlink to the original (and a
-  canonical URL where supported) to capture the SEO benefits of syndication —
-  brand search lift, parasite rankings, LLM citations, and indexing. Use this
-  skill whenever the user wants to "syndicate", "repurpose", "cross-post",
-  "distribute", or "make X versions of" an existing post or article. Triggers on
-  phrases like "syndicate this post", "turn this into a Twitter thread", "make a
-  LinkedIn version", "cross-post to Medium", "repurpose this content".
+  platform-native variations for syndication to Medium, X/Twitter (threads and
+  Articles), LinkedIn, Reddit, Hacker News, Dev.to, Hashnode, Bluesky, Threads,
+  Substack, Facebook, and Instagram. Every variation includes a backlink to the
+  original (and a canonical URL where supported) to capture the SEO benefits of
+  syndication — brand search lift, parasite rankings, LLM citations, and
+  indexing. Use this skill whenever the user wants to "syndicate", "repurpose",
+  "cross-post", "distribute", or "make X versions of" an existing post or
+  article. Triggers on phrases like "syndicate this post", "turn this into a
+  Twitter thread", "turn this into an X article", "make a LinkedIn version",
+  "cross-post to Medium", "repurpose this content".
 ---
 
 # Content syndication
 
 Take one piece of already-published content and produce platform-native
-variations for up to twelve channels. Each variation carries a contextual
+variations for up to thirteen channels. Each variation carries a contextual
 backlink to the original — and a canonical URL on platforms that support one —
 so the syndication compounds into SEO lift rather than competing with the source
 for rankings.
@@ -41,8 +42,8 @@ user already attached to the source URL.
 2. **Load the source.** URL → WebFetch. Local path → Read.
 3. **Extract the skeleton** (see "Extracting the skeleton" below).
 4. **Show the skeleton back** to the user in 5–8 lines so they can confirm it's
-   accurate before you generate twelve variations off a bad base.
-5. **Ask which platforms** to cover. Default offer: all twelve, grouped by
+   accurate before you generate a dozen-plus variations off a bad base.
+5. **Ask which platforms** to cover. Default offer: all thirteen, grouped by
    syndication bucket so the user can pick by intent.
 6. **For each chosen platform, Read its template file** at
    `skills/content-syndication/platforms/<platform>.md`. Only load the ones the
@@ -92,10 +93,11 @@ or correct before proceeding.
 
 ## Asking which platforms
 
-Default to offering all twelve, grouped by bucket so the user understands the
+Default to offering all thirteen, grouped by bucket so the user understands the
 syndication strategy behind each choice. Use a multi-select prompt:
 
-**Republish (full article, canonical URL):** medium, devto, hashnode
+**Republish (full article, canonical URL):** medium, devto, hashnode. (x-article
+is also a full republish but has no canonical — see its template.)
 
 **Native thread (hook-first, backlink in final post):** twitter, bluesky,
 threads
@@ -107,7 +109,8 @@ substack, instagram
 
 If the source URL is itself native to a platform — e.g. the source is a
 twitter.com or x.com URL — skip that platform automatically and tell the user
-why. Same for a linkedin.com source URL.
+why. An x.com/twitter.com source skips both twitter and x-article (don't
+republish an X post back onto X). Same for a linkedin.com source URL.
 
 ## Output layout
 
@@ -117,6 +120,7 @@ why. Same for a linkedin.com source URL.
   devto.md
   hashnode.md
   twitter.md
+  x-article.md
   bluesky.md
   threads.md
   linkedin.md
@@ -167,7 +171,8 @@ cover a question, ask the user; don't guess.
   backlink anchor text on platforms where anchor text is visible (LinkedIn,
   Facebook, Reddit, Medium intro line).
 - **Source is itself native to a platform** (twitter.com, x.com, linkedin.com,
-  medium.com, substack URL, etc.) — skip that platform and tell the user why.
+  medium.com, substack URL, etc.) — skip that platform and tell the user why. An
+  x.com/twitter.com source skips both twitter and x-article.
 - **`./syndicated/<slug>/` already exists** — show the user what's in it, ask
   whether to overwrite, date-suffix, or abort.
 - **Source contains unsourced statistics** — preserve them as-is. Don't add
@@ -187,12 +192,15 @@ Wrote N variations to ./syndicated/<slug>/:
   devto.md        — "Originally published at <site>. <opening line>…"
   ...
   twitter.md      — "<hook tweet, first 80 chars>…"
+  x-article.md    — "Originally published at <site>. <opening line>…"
   linkedin.md     — "<hook line, first 80 chars>…"
   reddit.md       — "<suggested title>"
   hackernews.md   — "<title> → <source_url>"
 
 Backlinks: all N point to <source_url>.
 Canonicals: medium.md, devto.md, hashnode.md have canonical URLs set.
+  (x-article.md is a full republish but X has no canonical — it relies on the
+  in-body backlink only.)
 
 Manual steps still needed:
   - reddit.md: pick a subreddit (suggestions in the file)
