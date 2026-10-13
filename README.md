@@ -11,7 +11,7 @@ tells the agent when to use it and how.
 Install with [skills.sh](https://skills.sh):
 
 ```sh
-bunx skills add artmann/skills --skill '*'
+bunx skills add artmann/skills
 ```
 
 Drop a skill into your agent's loadout and it picks up new triggers
