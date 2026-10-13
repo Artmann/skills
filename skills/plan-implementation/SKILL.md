@@ -237,7 +237,7 @@ Use this structure:
 ```markdown
 # <Feature name>
 
-<One paragraph: what we're building, for whom, and why.>
+<Two or three short sentences: what we're building, for whom, and why.>
 
 ## Context
 
@@ -246,7 +246,7 @@ Use this structure:
 
 ## Decisions
 
-- <Decision> - <reason>
+- **<Decision in a few words>.** <Why, in one or two sentences.>
 
 ## Phase 1: UI and interaction
 
@@ -298,6 +298,52 @@ Use this structure:
 
 Leave a section out if it doesn't apply rather than filling it with
 placeholders. Put anything you couldn't decide under "Open questions".
+
+## Writing style
+
+The plan is read by people deciding whether the approach is right, and later by
+whoever builds it. It should be quick to skim and easy to read. Thorough content
+is no use if it's tiring to get through.
+
+- **Plain words, short sentences.** One idea per sentence. If a sentence has a
+  semicolon, a colon followed by a list, or more than one "and", split it.
+- **One idea per bullet.** A bullet is one or two sentences. If it needs more,
+  it's either several bullets or a sub-list.
+- **Say what happens before naming the code.** Describe the behaviour in words
+  first, then point to the file or function. Don't pack several identifiers into
+  one sentence.
+- **Keep code names out of prose where you can.** Put file paths and function
+  names in a "Where" column of a table, or at the end of a bullet, rather than
+  in the middle of a sentence.
+- **Avoid parentheses.** If an aside matters, give it its own sentence. If it
+  doesn't, cut it.
+- **Lead with the point.** Start each section and bullet with the conclusion,
+  then the reason.
+- **Use tables for lists of similar things.** Views, components, endpoints,
+  error messages, and risks usually read better as tables than as bullets.
+- **Short paragraphs.** Three sentences at most. Prefer lists over paragraphs.
+- **Cut filler.** Drop phrases like "as in the prototype", "note that", and
+  "this means that" unless they carry information.
+- **Explain domain terms once.** Use the product's terms, and add new ones to
+  the glossary rather than explaining them inline every time.
+
+Before:
+
+> **The chart belongs to the summary**, as `summary.chart`, not as a sibling of
+> it. A chart only ever plots a summary: clearing the summary clears the chart,
+> and nothing can describe a chart for a view without one. This also means the
+> existing unsaved-changes comparison (`summaryEntry`) and saving (`toProposal`)
+> pick the chart up without new plumbing.
+
+After:
+
+> **The chart is part of the summary.** A chart always plots a summary, so
+> removing the summary removes the chart. Saving and unsaved-changes tracking
+> already handle the summary, so they handle the chart for free. Stored as
+> `summary.chart`.
+
+Before finishing, reread the plan and rewrite any sentence you had to read
+twice.
 
 When done, tell the user where the plan was written, give a short summary of the
 main decisions, and list the open questions.
