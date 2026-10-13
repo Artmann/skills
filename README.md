@@ -20,49 +20,67 @@ you having to spell out the workflow every time.
 
 ## Unsplash
 
+Search Unsplash for photographs by keyword and get back a properly-sized,
+attribution-ready image URL.
+
+- Reads the access key from `~/.unsplash`, or walks you through getting one.
+- Picks the right orientation for the use case.
+- Sizes the URL for where the image will go: blog hero, OG card, Instagram,
+  Pinterest, YouTube thumbnail, and more.
+- Generates the photographer attribution snippet.
+- Triggers the download event that Unsplash's API guidelines require.
+
+**Triggers on:** "find an image of X", "I need a stock photo", "hero image", "OG
+image".
+
+**Install:**
+
 ```sh
 bunx skills add artmann/skills --skill unsplash
 ```
 
-Search Unsplash for photographs by keyword and get back a properly-sized,
-attribution-ready image URL. Handles the full flow — reading the access key from
-`~/.unsplash` (or walking through obtaining one), picking the right orientation,
-sizing the URL for the intended use (blog hero, OG card, Instagram, Pinterest,
-YouTube thumbnail, and more), generating the photographer attribution snippet,
-and triggering the download event Unsplash's API guidelines require. Triggers on
-phrases like "find an image of X", "I need a stock photo", "hero image", or "OG
-image".
-
 ## Content syndication
+
+Take a piece of content already published on your own site and produce
+platform-native versions for syndication.
+
+- Supports Medium, X/Twitter, LinkedIn, Reddit, Hacker News, Dev.to, Hashnode,
+  Bluesky, Threads, Substack, Facebook, and Instagram.
+- Every version links back to the original, and sets a canonical URL on
+  platforms that support one (Medium, Dev.to, Hashnode), so syndication adds SEO
+  value instead of competing with the source.
+- Per-platform templates live in separate files, so only the platforms you pick
+  get loaded into context.
+
+**Triggers on:** "syndicate this post", "turn this into a Twitter thread", "make
+a LinkedIn version", "cross-post to Medium", "repurpose this content".
+
+**Install:**
 
 ```sh
 bunx skills add artmann/skills --skill content-syndication
 ```
 
-Take a piece of content already published on your own site and produce
-platform-native variations for syndication to Medium, X/Twitter, LinkedIn,
-Reddit, Hacker News, Dev.to, Hashnode, Bluesky, Threads, Substack, Facebook, and
-Instagram. Each variation carries a contextual backlink to the original — and a
-canonical URL on platforms that support one (Medium, Dev.to, Hashnode) — so the
-syndication compounds into SEO lift rather than competing with the source for
-rankings. Per-platform templates live as separate files so only the chosen
-platforms get loaded into context. Triggers on phrases like "syndicate this
-post", "turn this into a Twitter thread", "make a LinkedIn version", "cross-post
-to Medium", or "repurpose this content".
-
 ## Plan implementation
+
+Create an implementation plan for a new feature or view before writing code. The
+plan is written to `docs/plans/<feature>.md` and works UI-first, in four phases:
+
+1. **UI and interaction** - user flows, views, loading/empty/error states, and
+   how mutations are handled (optimistic updates, drafts, intent-based actions).
+2. **Data model** - derived from what the UI needs, not the other way around.
+3. **Services and endpoints** - the glue between UI and data. Domain-driven,
+   flat APIs, one shared vocabulary.
+4. **Review** - failure modes, validation, authorization, rate limiting, and
+   queueing.
+
+The plan ends with an ordered build checklist.
+
+**Triggers on:** "plan this feature", "create an implementation plan", "how
+should we build X", `/plan-implementation`.
+
+**Install:**
 
 ```sh
 bunx skills add artmann/skills --skill plan-implementation
 ```
-
-Create an implementation plan for a new feature or view before writing code. The
-plan is built UI-first: user flows, views, loading/empty/error states, and how
-mutations are handled (optimistic updates, drafts, intent-based actions). The
-data model is then derived from what the UI needs, followed by the services and
-endpoints that connect the two - domain-driven, flat APIs, one shared
-vocabulary. A final review covers failure modes, validation, authorization, rate
-limiting, and queueing, and the plan ends with an ordered build checklist. Plans
-are written to `docs/plans/<feature>.md`. Triggers on phrases like "plan this
-feature", "create an implementation plan", "how should we build X", or
-`/plan-implementation`.
