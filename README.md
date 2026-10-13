@@ -41,3 +41,16 @@ rankings. Per-platform templates live as separate files so only the chosen
 platforms get loaded into context. Triggers on phrases like "syndicate this
 post", "turn this into a Twitter thread", "make a LinkedIn version", "cross-post
 to Medium", or "repurpose this content".
+
+## Plan implementation
+
+Create an implementation plan for a new feature or view before writing code. The
+plan is built UI-first: user flows, views, loading/empty/error states, and how
+mutations are handled (optimistic updates, drafts, intent-based actions). The
+data model is then derived from what the UI needs, followed by the services and
+endpoints that connect the two - domain-driven, flat APIs, one shared
+vocabulary. A final review covers failure modes, validation, authorization, rate
+limiting, and queueing, and the plan ends with an ordered build checklist. Plans
+are written to `docs/plans/<feature>.md`. Triggers on phrases like "plan this
+feature", "create an implementation plan", "how should we build X", or
+`/plan-implementation`.
