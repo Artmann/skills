@@ -11,7 +11,7 @@ tells the agent when to use it and how.
 Install with [skills.sh](https://skills.sh):
 
 ```sh
-npx skills add artmann/skills
+bunx skills add artmann/skills --skill '*'
 ```
 
 Drop a skill into your agent's loadout and it picks up new triggers
@@ -19,6 +19,10 @@ automatically: search for stock photos, source images for a blog, etc. without
 you having to spell out the workflow every time.
 
 ## Unsplash
+
+```sh
+bunx skills add artmann/skills --skill unsplash
+```
 
 Search Unsplash for photographs by keyword and get back a properly-sized,
 attribution-ready image URL. Handles the full flow — reading the access key from
@@ -30,6 +34,10 @@ phrases like "find an image of X", "I need a stock photo", "hero image", or "OG
 image".
 
 ## Content syndication
+
+```sh
+bunx skills add artmann/skills --skill content-syndication
+```
 
 Take a piece of content already published on your own site and produce
 platform-native variations for syndication to Medium, X/Twitter, LinkedIn,
@@ -43,6 +51,10 @@ post", "turn this into a Twitter thread", "make a LinkedIn version", "cross-post
 to Medium", or "repurpose this content".
 
 ## Plan implementation
+
+```sh
+bunx skills add artmann/skills --skill plan-implementation
+```
 
 Create an implementation plan for a new feature or view before writing code. The
 plan is built UI-first: user flows, views, loading/empty/error states, and how
